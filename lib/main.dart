@@ -41,9 +41,10 @@ class _MyHomePageState extends State<MyHomePage> {
   int _currentIndex = 0;
    final List<Widget> _children = [
 
-      MyApps(),
-     MyApps(),
-     MyApps()
+      const MyApps(),
+     const MyApps(),
+     const MyApps(),
+     const MyApps()
 
   ];
   /// Handler for when you want to programmatically change
@@ -78,33 +79,44 @@ class _MyHomePageState extends State<MyHomePage> {
        child: _children.elementAt(_currentIndex),
      ),
 
-     bottomNavigationBar: BottomNavigationBar(
-
-       items: const <BottomNavigationBarItem>[
-         BottomNavigationBarItem(
-           icon: Icon(Icons.home),
-           label: 'Home',
-         ),
-         BottomNavigationBarItem(
-           icon: Icon(Icons.business),
-           label: 'Business',
-         ),
-         BottomNavigationBarItem(
-           icon: Icon(Icons.school),
-           label: 'School',
-         ),
-       ],
-       currentIndex: _currentIndex,
-       selectedItemColor: Colors.amber[800],
-       onTap: _onItemTapped,
-     ),
-       floatingActionButton: FloatingActionButton(onPressed: () {  },
-         // ...FloatingActionButton properties...
+       floatingActionButton:FloatingActionButton( //Floating action button on Scaffold
+         onPressed: (){
+           //code to execute on button press
+         },
+         child: const Icon(Icons.send), //icon inside button
        ),
 
-       // Here's the new attribute:
+       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+       //floating action button position to center
 
-       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked
+       bottomNavigationBar: BottomAppBar( //bottom navigation bar on scaffold
+         color:Colors.redAccent,
+         shape: const CircularNotchedRectangle(), //shape of notch
+         notchMargin: 5, //notche margin between floating button and bottom appbar
+         child: Row( //children inside bottom appbar
+           mainAxisSize: MainAxisSize.max,
+           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+           children: <Widget>[
+             IconButton(icon: const Icon(Icons.menu, color: Colors.white), onPressed: () {
+
+               onTabTapped(0);
+
+             },),
+             IconButton(icon: const Icon(Icons.search, color: Colors.white,), onPressed: () {
+
+               onTabTapped(1);
+
+             },),
+             IconButton(icon: const Icon(Icons.print, color: Colors.white,), onPressed: () {
+               onTabTapped(2);
+             },),
+             IconButton(icon: const Icon(Icons.people, color: Colors.white,), onPressed: () {
+               onTabTapped(3);
+
+             },),
+           ],
+         ),
+       ),
    );
 
   }
